@@ -1,0 +1,106 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+<title>Hospital IT System</title>
+<meta charset="utf-8">
+<link rel="stylesheet" th:href="@{/css/main.css}" />
+</head>
+
+<body>
+	<h2>Pacjent</h2>
+	<div class="display-form" th:object="${patient}">
+		<form th:action="@{/patients/save}" method="post">
+			<table>
+				<tr>
+					<td>Id</td>
+					<td th:text="*{id}">ID</td>
+					<td><input type="hidden" th:field="*{id}" /></td>
+				</tr>
+				<tr>
+					<td>Imię</td>
+					<td><input type="text" th:field="*{firstName}" /></td>
+					<td class="error" th:if="${#fields.hasErrors('firstName')}"
+						th:errors=*{firstName}>ERROR</td>
+				</tr>
+				<tr>
+					<td>Nazwisko</td>
+					<td><input type="text" th:field="*{lastName}" /></td>
+					<td class="error" th:if="${#fields.hasErrors('lastName')}"
+						th:errors=*{lastName}>ERROR</td>
+				</tr>
+				<tr>
+					<td>Płeć</td>
+					<td><select th:field="*{sex}">
+							<option th:value="mężczyzna">mężczyzna</option>
+							<option th:value="kobieta">kobieta</option>
+					</select></td>
+				</tr>
+				<tr>
+					<td>Wiek</td>
+					<td><input type="number" th:field="*{age}" /></td>
+					<td class="error" th:if="${#fields.hasErrors('age')}"
+						th:errors=*{age}>ERROR</td>
+				</tr>
+				<tr>
+					<td>Opis choroby</td>
+					<td><input type="text" th:field="*{sickness}" /></td>
+					<td class="error" th:if="${#fields.hasErrors('sickness')}"
+						th:errors=*{sickness}>ERROR</td>
+				</tr>
+				<tr>
+					<td>Data przyjęcia</td>
+					<td><input type="date" th:field="*{admissionDate}" /></td>
+					<td class="error" th:if="${#fields.hasErrors('admissionDate')}"
+						th:errors=*{admissionDate}>ERROR</td>
+				</tr>
+				<tr>
+					<td>Oddział</td>
+					<td><select th:field="*{department.id}">
+							<option th:each="dep:${departments}" th:value="${dep.id}"
+								th:text="${dep.name}" />
+					</select>
+					<td class="error" th:if="${#fields.hasErrors('department')}"
+						th:errors=*{department}>ERROR</td>
+				</tr>
+				<tr>
+					<td>Pokój</td>
+					<td><select th:field="*{room.id}">
+							<option th:each="room:${rooms}" th:value="${room.id}"
+								th:text="${room.number}" />
+					</select>
+				</tr>
+				<tr>
+					<td>Lekarz prowadzący</td>
+					<td><select th:field="*{doctor.id}">
+							<option th:each="doc:${doctors}" th:value="${doc.id}"
+								th:text="${doc.firstName + ' ' + doc.lastName}" />
+					</select>
+					<td class="error" th:if="${#fields.hasErrors('doctor')}"
+						th:errors=*{doctor}>ERROR</td>
+				</tr>
+				<tr>
+					<td>Pielęgniarka</td>
+					<td><select th:field="*{nurse.id}">
+							<option th:each="nur:${nurses}" th:value="${nur.id}"
+								th:text="${nur.firstName + ' ' + nur.lastName}" />
+					</select>
+					<td class="error" th:if="${#fields.hasErrors('nurse')}"
+						th:errors=*{nurse}>ERROR</td>
+				</tr>
+				<tr>
+					<td><input type="submit" value="Utwórz"></td>
+				</tr>
+			</table>
+		</form>
+	</div>
+	<div>
+		<p>
+			<a th:href="@{/patients}">Wstecz</a>
+		</p>
+	</div>
+</body>
+
+</html>

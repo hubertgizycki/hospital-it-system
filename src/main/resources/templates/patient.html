@@ -1,0 +1,71 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+<title>Hospital IT System</title>
+<meta charset="utf-8">
+<link rel="stylesheet" th:href="@{/css/main.css}" />
+</head>
+
+<body>
+	<h2>Pacjent</h2>
+	<div class="display-One" th:object="${patient}" >
+		<table>
+			<tr>
+				<td>Id</td>
+				<td th:text="*{id}">ID</td>
+			</tr>
+			<tr>
+				<td>Imię</td>
+				<td th:text="*{firstName}">FIRST_NAME</td>
+			</tr>
+			<tr>
+				<td>Nazwisko</td>
+				<td th:text="*{lastName}">LAST_NAME</td>
+			</tr>
+			<tr>
+				<td>Płeć</td>
+				<td th:text="*{sex}">SEX</td>
+			</tr>
+			<tr>
+				<td>Wiek</td>
+				<td th:text="*{age}">AGE</td>
+			</tr>
+			<tr>
+				<td>Opis choroby</td>
+				<td th:text="*{sickness}">SICKNESS</td>
+			</tr>
+			<tr>
+				<td>Data przyjęcia</td>
+				<td th:text="*{admissionDate}">ADMISSION_DATE</td>
+			</tr>
+			<tr>
+				<td>Oddział</td>
+				<td th:text="*{department.name}">DEPARTMENT</td>
+			</tr>
+			<tr>
+				<td>Pokój</td>
+				<td th:text="*{room.number}">ROOM</td>
+			</tr>
+			<tr>
+				<td>Lekarz prowadzący</td>
+				<td th:text="*{doctor.position + ' ' + doctor.firstName + ' ' + doctor.lastName}">DOCTOR</td>
+			</tr>
+			<tr>
+				<td>Pielęgniarka</td>
+				<td th:text="*{nurse.firstName + ' ' + nurse.lastName}">NURSE</td>
+			</tr>
+			
+		</table>
+
+	</div>
+	<div>
+	<p><a th:href="@{/patients/form/} + ${patient.id}">Modyfikuj</a></p>
+	<p><a th:href="@{/patients/delete/} + ${patient.id}" onclick="return confirm('Czy na pewno usunąć danego pacjenta?');">Usuń</a></p>
+	<p><a th:href="@{/patients}">Wstecz</a></p>
+	</div>
+</body>
+
+</html>

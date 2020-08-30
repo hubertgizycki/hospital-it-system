@@ -1,0 +1,41 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+<title>Hospital IT System</title>
+<meta charset="utf-8">
+<link rel="stylesheet" th:href="@{/css/main.css}" />
+</head>
+
+<body>
+	<h2>Oddział</h2>
+	<div class="display-One" th:object="${department}">
+		<table>
+			<tr>
+				<td>Id</td>
+				<td th:text="*{id}">ID</td>
+			</tr>
+			<tr>
+				<td>Nazwa</td>
+				<td th:text="*{name}">NAME</td>
+			</tr>
+			<tr>
+				<td>Lokalizacja</td>
+				<td th:text="*{location}">LOCATION</td>
+			</tr>
+			<tr>
+				<td>Obłożenie miejsc</td>
+				<td th:text="*{capacity}">CAPACITY</td>
+			</tr>
+		</table>
+
+	</div>
+	<div>
+		<p><a th:href="@{/departments/form/} + ${department.id}">Modyfikuj</a></p>
+		<p><a th:href="@{/departments}">Wstecz</a></p>
+	</div>
+</body>
+
+</html>

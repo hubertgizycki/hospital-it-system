@@ -1,0 +1,54 @@
+<!doctype html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+<title>Hospital IT System</title>
+<meta charset="utf-8">
+<link rel="stylesheet" th:href="@{/css/main.css}" />
+</head>
+
+<body>
+	<h2>Lekarz</h2>
+	<div class="display-One" th:object="${doctor}">
+		<table>
+			<tr>
+				<td>Id</td>
+				<td th:text="*{id}">ID</td>
+			</tr>
+			<tr>
+				<td>Imię</td>
+				<td th:text="*{firstName}">FIRST_NAME</td>
+			</tr>
+			<tr>
+				<td>Nazwisko</td>
+				<td th:text="*{lastName}">LAST_NAME</td>
+			</tr>
+			<tr>
+				<td>Stanowisko</td>
+				<td th:text="*{position}">POSITION</td>
+			</tr>
+			<tr>
+				<td>Data zatrudnienia</td>
+				<td th:text="*{hireDate}">HIRE_DATE</td>
+			</tr>
+			<tr>
+				<td>Pensja</td>
+				<td th:text="*{salary}">SALARY</td>
+			</tr>
+			<tr>
+				<td>Oddział</td>
+				<td th:text="*{department.name}">DEPARTMENT</td>
+			</tr>
+		</table>
+
+	</div>
+	<div>
+		<p><a th:href="@{/doctors/form/} + ${doctor.id}">Modyfikuj</a></p>
+		<p><a th:href="@{/doctors/delete/} + ${doctor.id}" onclick="return confirm('Czy na pewno usunąć danego lekarza?');">Usuń</a></p>
+		<p><a th:href="@{/doctors}">Wstecz</a></p>
+	</div>
+</body>
+
+</html>
